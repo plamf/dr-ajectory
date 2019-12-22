@@ -1,2 +1,2 @@
-# dr-ajectory
-Laser-guided archery companion
+# Dr. Ajectory
+## Laser-guided archery companion
