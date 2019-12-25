@@ -1,9 +1,19 @@
+#include <Servo.h>
+
+int ledPin = 2;
+int buttonPin = 3;
+int buttonValue = 0;
+
+Servo servo;
+int servoPin = 9;
+int servoPosition = 0;
+
 void setup() {
-  // 1) Initialize Buttons and sensors
-  // 2) Turn on Components
-  // 3) Calibrate
+  turnOnLed();
+  initializeButton();
+  initializeServo();
 }
 
-void loop() {
-  // Poll Sensors
+void loop(){
+  adjustForTarget();
 }
