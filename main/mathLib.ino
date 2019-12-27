@@ -4,7 +4,8 @@ double convertForceIntoNewtons(int pounds){
 }
 
 double convertDrawLengthInToMeters(int centimeters){
-  return centimeters / 2.5 / 100;
+  double drawLengthFactor = 2.5;
+  return centimeters / drawLengthFactor / 100;
 }
 
 double convertProjectileMassIntoKilograms(int grains){
