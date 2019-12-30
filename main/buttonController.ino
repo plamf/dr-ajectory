@@ -8,5 +8,14 @@ int readButtonState(){
     LOW  = Button pressed
     HIGH = Button not pressed
   */  
-  return digitalRead(buttonPin); 
+  int state = digitalRead(buttonPin);
+  updateLastDebounceTime(state);
+  
+  return state; 
+}
+
+void updateLastDebounceTime(int state){
+  if (state != lastButtonState) {
+    lastDebounceTime = millis();
+  }
 }
