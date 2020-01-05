@@ -1,3 +1,7 @@
+Servo servo;
+int servoPin = 9;
+int servoPosition = 90;
+
 void initializeServo(){
   servo.attach(servoPin);
   calibrateServo();
@@ -31,7 +35,7 @@ void set(int degree){
 
 void adjustForTarget(){
   int distance = getDistance();
-  int degree = calculateTrajectory(distance, 0, 0);
+  int degree = calculateProjectileTrajectory(distance, 0, 0);
   
   if (longPress) {
     reset();
