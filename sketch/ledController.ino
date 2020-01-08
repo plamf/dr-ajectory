@@ -1,4 +1,4 @@
-int ledPin = 2;
+int ledPin = 3;
 
 void turnOnLed(){
   pinMode(ledPin, OUTPUT);
