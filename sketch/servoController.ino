@@ -1,9 +1,10 @@
 #include <Servo.h>
 
 Servo servo;
-int servoPin = 13;
 
 void initializeServo(){
+  int servoPin = 13;
+
   servo.attach(servoPin);
   calibrateServo();
 }
