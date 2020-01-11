@@ -18,6 +18,7 @@ int readButtonState(){
 
 void trackInputAmount(){
   buttonState = digitalRead(buttonPin);
+  
   if (buttonState != lastButtonState) {
     if (buttonState == HIGH) {
       pressCount++;

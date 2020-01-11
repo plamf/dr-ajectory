@@ -5,6 +5,7 @@ void setup() {
   turnOnLed();
   initializeButton();
   initializeServo();
+  initializeSevSegDisplay();
 }
 
 void loop(){
