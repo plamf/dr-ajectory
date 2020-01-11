@@ -1,5 +1,3 @@
-#include <Servo.h>
-
 void setup() {
   Serial.begin(9600);
   initializeButton();
@@ -8,5 +6,6 @@ void setup() {
 }
 
 void loop(){
+    turnOnDisplay();
     listenToInput();
 }

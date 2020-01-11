@@ -33,7 +33,11 @@ double calculateVelocity(double F, double L, double m, double R, double W){
 
 int getDistance(){
   //Todo: Determine distance to target in meters
-  return 100;
+  int distance = 100;
+
+  setDisplayNumber(distance);
+  
+  return distance;
 }
 
 double convertRadiansToDegrees(double radians){

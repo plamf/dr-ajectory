@@ -1,17 +1,26 @@
 #include <SevSeg.h>
+
 SevSeg sevseg;
+int displayNumber;
 
 void initializeSevSegDisplay() {
-  byte numDigits = 4;
-  byte digitPins[] = {10, 11, 12, 13};
-  byte segmentPins[] = {1, 4, 5, 6, 7, 8, A0, A1};
+  byte numDigits = 3;
+  byte digitPins[] = {10, 11, 12};
+  byte segmentPins[] = {5, 3, 7, 8, 9, 4, 6}; // In order of segments a-b-c-d-e-f-g
   bool resistorsOnSegments = false; // 'false' means resistors are on digit pins
-  byte hardwareConfig = COMMON_CATHODE; // See README.md for options
+  byte hardwareConfig = COMMON_ANODE;
   bool updateWithDelays = false; // Default 'false' is Recommended
-  bool leadingZeros = false; // Use 'true' if you'd like to keep the leading zeros
-  bool disableDecPoint = false; // Use 'true' if your decimal point doesn't exist or isn't connected. Then, you only need to specify 7 segmentPins[]
+  bool leadingZeros = false;
+  bool disableDecPoint = true;
 
-  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
-  updateWithDelays, leadingZeros, disableDecPoint);
-  sevseg.setNumber(3141); // Displays '3.141'
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments, updateWithDelays, leadingZeros, disableDecPoint);
+}
+
+void setDisplayNumber(int number){
+  displayNumber = number;
+}
+
+void turnOnDisplay(){
+  sevseg.setNumber(displayNumber);
+  sevseg.refreshDisplay();
 }

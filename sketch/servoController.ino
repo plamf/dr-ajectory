@@ -1,5 +1,7 @@
+#include <Servo.h>
+
 Servo servo;
-int servoPin = 9;
+int servoPin = 13;
 
 void initializeServo(){
   servo.attach(servoPin);

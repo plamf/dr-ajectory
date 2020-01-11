@@ -1,4 +1,4 @@
-int buttonPin = 2;
+int buttonPin = A15;
 int pressCount = 0;
 int buttonState = 0; 
 int lastButtonState = 0;
@@ -17,7 +17,7 @@ int readButtonState(){
 }
 
 void trackInputAmount(){
-  buttonState = digitalRead(buttonPin);
+  buttonState = readButtonState();
   
   if (buttonState != lastButtonState) {
     if (buttonState == HIGH) {
@@ -41,6 +41,7 @@ void listenToInput(){
     rotateServo(degree);
   } else if (doublePress) {
     calibrateServo();
+    setDisplayNumber(0);
     pressCount = 0;
   }
 }
