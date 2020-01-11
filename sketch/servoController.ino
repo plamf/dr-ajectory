@@ -12,11 +12,7 @@ void calibrateServo(){
 }
 
 void rotateServo(int degree){
-  servo.write(degree);
-}
-
-void adjustServo(int degree){
-    if(servo.read() != degree){
-      rotateServo(degree);
+  if(servo.read() != degree){
+    servo.write(degree);
   }
 }
