@@ -1,4 +1,4 @@
-name: Build Dr. Ajectory Sketches
+name: Build Sketches
 on: push
 jobs:
   build:
@@ -9,3 +9,4 @@ jobs:
       uses: Legion2/arduino-builder-action@v2.0.0
       with:
         board: "arduino:avr:uno"
+        sketchDirectory: sketch
