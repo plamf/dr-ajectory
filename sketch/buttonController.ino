@@ -27,14 +27,14 @@ void trackInputAmount(){
 
 void listenToInput(){
   int singlePress = readButtonState() == HIGH && pressCount == 1;
-  int doublePress = pressCount >= 3;
+  int triplePress = pressCount >= 3;
   
   trackInputAmount();
   
   if (singlePress){
     int degree = calculate(40, 194, 350);
     rotateServo(degree);
-  } else if (doublePress) {
+  } else if (triplePress) {
     calibrateServo();
     setDisplayNumber(0);
     pressCount = 0;
