@@ -1,4 +1,4 @@
-![](https://github.com/plamf/dr-ajectory/workflows/Build%20Dr.%20Ajectory%20Sketches/badge.svg)
+![](https://github.com/plamf/dr-ajectory/workflows/Build%20Sketches/badge.svg)
 # Dr. Ajectory
 ## Laser-guided archery companion
 
@@ -12,3 +12,4 @@ Under construction
 - 1x Tower Pro SG90 Servo
 - 1x 9V Battery
 - 1x Seven-Segment Display with 3 or 4 digits (only 3 will be in use)
+- 1x 5mV 650nm Laser Diode

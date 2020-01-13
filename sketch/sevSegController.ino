@@ -1,4 +1,4 @@
-#include <SevSeg.h>
+#include "libraries\SevSeg\SevSeg.h"
 
 SevSeg sevseg;
 int displayNumber;

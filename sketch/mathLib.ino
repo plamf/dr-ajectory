@@ -1,5 +1,5 @@
 const int iboRating = 300; //not sure if this should be constant or configurable
-int additionalWeightOnBowstringInGrams = 5;
+int additionalWeightOnBowstringInGrams = 0;
 
 double convertForceIntoNewtons(int pounds){
   const double newtonsPerPound = 4.448;
@@ -7,7 +7,7 @@ double convertForceIntoNewtons(int pounds){
   return pounds * newtonsPerPound;
 }
 
-double convertDrawLengthIntoMeters(int centimeters){
+double convertDrawLengthIntoInches(int centimeters){
   const double drawlengthFactor = 2.5;
   const double centimetersPerInch = 2.54;
   
@@ -56,7 +56,7 @@ double calculateAngle(double velocity){
 
 double calculate(double lbsOfForce, double cmDrawlength, double arrowWeightGrains){
   double F = convertForceIntoNewtons(lbsOfForce);
-  double L = convertDrawLengthIntoMeters(cmDrawlength);
+  double L = convertDrawLengthIntoInches(cmDrawlength);
   double m = convertProjectileMassIntoKilograms(arrowWeightGrains);
   double v = calculateVelocity(F, L, m, iboRating, additionalWeightOnBowstringInGrams);
     
