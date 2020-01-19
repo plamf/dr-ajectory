@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:configurator"
         mc:Ignorable="d"
-        Title="Dr. Ajectory Companion" Height="400" Width="500" MaxHeight="400" MaxWidth="500">
+        Title="Dr. Ajectory Configurator" Height="400" Width="500" MaxHeight="400" MaxWidth="500">
     <TabControl>
         <TabItem Header="Dr. Ajectory Settings">
             <local:SettingsTab></local:SettingsTab>

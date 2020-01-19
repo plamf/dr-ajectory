@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "configurator", "WpfApp1\configurator.csproj", "{72B5EBEF-A35A-43AA-AD6D-24BDAE6CE116}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "configurator", "configurator\configurator.csproj", "{72B5EBEF-A35A-43AA-AD6D-24BDAE6CE116}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,54 +1,80 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.IO;
 using System.IO.Ports;
-using System.Timers;
 using System.Windows.Controls;
+using configurator.Helpers;
 
 namespace configurator
 {
     public partial class SettingsTab : UserControl
     {
-        private SerialPort serialPort;
-        private Timer timer;
+        private SerialPort _serialPort;
 
         public SettingsTab()
         {
             InitializeComponent();
 
-            timer = new Timer(1000);
-            timer.Elapsed += CheckConnection;
-            timer.Start();
+            var portslist = PortParser.GetPorts(); //TODO: Add to dropdownlist and connect to port with buttonclick
 
-            serialPort = new SerialPort("COM4", 9600) {Handshake = Handshake.None};
-            serialPort.DataReceived += SerialPort_DataReceived;
+            CheckConnection();
         }
 
-        private void CheckConnection(object sender, ElapsedEventArgs e)
+        private void CheckConnection()
         {
+            _serialPort = new SerialPort("COM5", 115200) {Handshake = Handshake.None};
             try
             {
-                serialPort.Open();
+                _serialPort.Open();
+                _serialPort.WriteLine("123"); //C - Check connection to Dr. Ajectory
             }
-            catch (IOException exception)
+            catch (IOException e)
             {
-                Console.WriteLine(exception);
+                //No connection found on this port
             }
-}
+        }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            var serialBuffer = serialPort.ReadExisting();
+            var serialBuffer = _serialPort.ReadExisting();
 
-            if (serialBuffer.Contains("state="))
+            if (serialBuffer.Contains("O")) //O - Connection OK
             {
-                var status = serialBuffer.Replace("state=", string.Empty);
-                if (status.Contains("O"))
-                {
-                    //Arduino connected
-                    //- Check if Dr. Ajectory is installed
-                    //-- If yes, then enable upload button
-                }
+                ToggleUploadButton(enabled: true);
             }
+            else
+            {
+                ToggleUploadButton(enabled: false);
+            }
+
+            _serialPort.Close();
+
+        }
+
+        private void ToggleUploadButton(bool enabled)
+        {
+            var worker = new BackgroundWorker();
+            var buttonText = string.Empty;
+
+            switch (enabled)
+            {
+                case true:
+                    buttonText = "Upload to Dr. Ajectory";
+                    break;
+                case false:
+                    buttonText = "Looking for Dr. Ajectory...";
+                    break;
+            }
+
+            worker.DoWork += delegate
+            {
+                this.Dispatcher?.Invoke(() =>
+                {
+                    btnUploadSettings.Content = buttonText;
+                    btnUploadSettings.IsEnabled = enabled;
+                });
+            };
+            
+            worker.RunWorkerAsync();
         }
     }
 }

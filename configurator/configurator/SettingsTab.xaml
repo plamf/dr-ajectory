@@ -71,6 +71,6 @@
         <Button Grid.Row="5" Grid.Column="1" IsEnabled="False">Load</Button>
         <Button Grid.Row="5" Grid.Column="2">New</Button>
 
-        <Button x:Name="btnUploadSettings" Grid.Row="6" Grid.ColumnSpan="3" Height="40" IsEnabled="False">Please connect to Dr. Ajectory...</Button>
+        <Button x:Name="btnUploadSettings" Grid.Row="6" Grid.ColumnSpan="3" Height="40" IsEnabled="False">Looking for Dr. Ajectory...</Button>
     </Grid>
 </UserControl>
