@@ -1,3 +1,9 @@
+//************ CONFIG VARIABLES *************
+extern int lbsOfForce;
+extern int cmDrawlength;
+extern int arrowWeightGrains;
+//*******************************************
+
 int buttonPin = A15;
 int pressCount = 0;
 int buttonState = 0; 
@@ -32,7 +38,7 @@ void listenToInput(){
   trackInputAmount();
   
   if (singlePress){
-    int degree = calculate(40, 194, 350);
+    int degree = calculate(lbsOfForce, cmDrawlength, arrowWeightGrains);
     rotateServo(degree);
   } else if (triplePress) {
     calibrateServo();

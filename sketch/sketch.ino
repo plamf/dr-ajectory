@@ -1,5 +1,7 @@
+
+
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   initializeButton();
   initializeServo();
   initializeSevSegDisplay();
@@ -9,4 +11,7 @@ void setup(){
 void loop(){
     turnOnDisplay();
     listenToInput();
+
+    recvWithEndMarker();
+    showNewNumber();
 }
