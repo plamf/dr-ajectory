@@ -10,24 +10,21 @@
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="0 2.5 0 2.5"/>
-                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="MaxLength" Value="3"></Setter>
             </Style>
             <Style TargetType="{x:Type Label}">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="20"/>
             </Style>
             <Style x:Key="UnitStyle" TargetType="Label">
                 <Setter Property="HorizontalAlignment" Value="left"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="20"/>
             </Style>
             <Style TargetType="{x:Type ListBox}">
                 <Setter Property="Width" Value="285"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="20"/>
             </Style>
             <Style TargetType="{x:Type Button}">
                 <Setter Property="FontSize" Value="20"/>
@@ -39,38 +36,39 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="38"></RowDefinition>
-            <RowDefinition Height="38"></RowDefinition>
-            <RowDefinition Height="38"></RowDefinition>
-            <RowDefinition Height="38"></RowDefinition>
-            <RowDefinition Height="38"></RowDefinition>
-            <RowDefinition Height="38"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0">IBO Rating</Label>
-        <TextBox Grid.Row="0" Grid.Column="1">300</TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbIboRating" PreviewTextInput="NumberValidationTextBox">300</TextBox>
 
         <Label Grid.Row="1" Grid.Column="0">Additional Weight on Bowstring</Label>
-        <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tbWeightOnBowstring" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource UnitStyle}">gram</Label>
 
         <Label Grid.Row="2" Grid.Column="0">Pounds of Force</Label>
-        <TextBox Grid.Row="2" Grid.Column="1"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbLbsOfForce" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource UnitStyle}">lbs</Label>
 
         <Label Grid.Row="3" Grid.Column="0">Draw-length</Label>
-        <TextBox Grid.Row="3" Grid.Column="1"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tbDrawLength" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource UnitStyle}">cm</Label>
 
         <Label Grid.Row="4" Grid.Column="0">Arrow Weight</Label>
-        <TextBox Grid.Row="4" Grid.Column="1"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="tbArrowWeight" PreviewTextInput="NumberValidationTextBox"></TextBox>
         <Label Grid.Row="4" Grid.Column="2" Style="{StaticResource UnitStyle}">grain</Label>
 
-        <ListBox Grid.Row="5" Grid.Column="0">Select from Profile...</ListBox>
-        <Button Grid.Row="5" Grid.Column="1" IsEnabled="False">Load</Button>
-        <Button Grid.Row="5" Grid.Column="2">New</Button>
+        <ComboBox x:Name="cbProfile" Grid.Row="5" Grid.ColumnSpan="3"></ComboBox>
 
-        <Button x:Name="btnUploadSettings" Grid.Row="6" Grid.ColumnSpan="3" Height="40" IsEnabled="False">Looking for Dr. Ajectory...</Button>
+        <ComboBox x:Name="cbDevice" Grid.Row="6" Grid.ColumnSpan="3"></ComboBox>
+
+        <Button x:Name="btnUploadSettings" Grid.Row="7" Grid.ColumnSpan="3" Height="40" IsEnabled="False" Click="BtnUploadSettings_OnClick">No connection...</Button>
     </Grid>
 </UserControl>

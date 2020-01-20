@@ -11,7 +11,5 @@ void setup(){
 void loop(){
     turnOnDisplay();
     listenToInput();
-
-    recvWithEndMarker();
-    showNewNumber();
+    listenOnSerialPort();
 }
