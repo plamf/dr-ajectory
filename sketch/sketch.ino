@@ -1,5 +1,3 @@
-
-
 void setup(){
   Serial.begin(115200);
   initializeButton();
@@ -11,5 +9,6 @@ void setup(){
 void loop(){
     turnOnDisplay();
     listenToInput();
-    listenOnSerialPort();
+    
+    handleIncomingData();
 }

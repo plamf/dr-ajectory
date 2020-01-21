@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.IO.Ports;
@@ -21,8 +20,6 @@ namespace configurator
         {
             InitializeComponent();
             InitializeComboboxes();
-
-            CheckConnection();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -31,18 +28,21 @@ namespace configurator
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void CheckConnection()
+        private bool CheckConnection(string port)
         {
-            _serialPort = new SerialPort("COM5", 115200) {Handshake = Handshake.None};
+            _serialPort = new SerialPort(port, 115200) {Handshake = Handshake.None};
             try
             {
                 _serialPort.Open();
-                _serialPort.WriteLine("123"); //C - Check connection to Dr. Ajectory
+                _serialPort.Close();
             }
             catch (IOException e)
             {
-                //No connection found on this port
+                MessageBox.Show($"A connection on {port} could not be established.", "Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
+
+            return true;
         }
 
         private void ToggleUploadButton(bool enabled)
@@ -111,20 +111,23 @@ namespace configurator
 
         private void CbDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ToggleUploadButton(enabled: cbDevice.SelectedIndex > 0);
+            if (cbDevice.SelectedValue is SerialPort port)
+            {
+                ToggleUploadButton(enabled: CheckConnection(port.PortName));
+            }
         }
 
         private void BtnUploadSettings_OnClick(object sender, RoutedEventArgs e)
         {
-            var serialPort = cbDevice.SelectionBoxItem as SerialPort;
+            var serialPort = cbDevice.SelectedValue as SerialPort;
             var uploadController = new UploadController(serialPort);
             var config = new ConfigVariables
             {
-                iboRating = int.Parse(tbIboRating.Text),
-                weightOnBowstring = int.Parse(tbWeightOnBowstring.Text),
-                drawLength = int.Parse(tbDrawLength.Text),
-                arrowWeight = int.Parse(tbArrowWeight.Text),
-                lbsOfForce = int.Parse(tbLbsOfForce.Text)
+                ArrowWeight = tbWeightOnBowstring.Text,
+                DrawLength = tbDrawLength.Text,
+                IboRating = tbIboRating.Text,
+                LbsOfForce = tbLbsOfForce.Text,
+                WeightOnBowstring = tbWeightOnBowstring.Text
             };
 
             uploadController.UpdateConfiguration(config);

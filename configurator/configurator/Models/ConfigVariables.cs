@@ -2,10 +2,11 @@
 {
     public class ConfigVariables
     {
-        public int iboRating { get; set; }
-        public int weightOnBowstring { get; set; }
-        public int lbsOfForce { get; set; }
-        public int drawLength { get; set; }
-        public int arrowWeight { get; set; }
+        public string IboRating { get; set; }
+        public string WeightOnBowstring { get; set; }
+        public string LbsOfForce { get; set; }
+        public string DrawLength { get; set; }
+        public string ArrowWeight { get; set; }
+        public string PayLoad => $"<{IboRating},{WeightOnBowstring},{LbsOfForce},{DrawLength},{ArrowWeight}>";
     }
 }

@@ -74,22 +74,35 @@ void parseData() {      // split the data into its parts
 
     char * strtokIndx; // this is used by strtok() as an index
 
-    strtokIndx = strtok(tempChars,",");      // get the first part - the string
-    strcpy(messageFromPC, strtokIndx); // copy it to messageFromPC
+    strtokIndx = strtok(NULL,",");
+    iboRating = atoi(strtokIndx); 
  
-    strtokIndx = strtok(NULL, ","); // this continues where the previous call left off
-    integerFromPC = atoi(strtokIndx);     // convert this part to an integer
-
     strtokIndx = strtok(NULL, ",");
-    floatFromPC = atof(strtokIndx);     // convert this part to a float
+    additionalWeightOnBowstringInGrams = atoi(strtokIndx); 
+ 
+    strtokIndx = strtok(NULL, ",");
+    lbsOfForce = atoi(strtokIndx); 
+ 
+    strtokIndx = strtok(NULL, ",");
+    cmDrawlength = atoi(strtokIndx); 
+ 
+    strtokIndx = strtok(NULL, ",");
+    arrowWeightGrains = atoi(strtokIndx);     
 
 }
 
 void setVariables() {
-    Serial.print("Message ");
-    Serial.println(messageFromPC);
-    Serial.print("Integer ");
-    Serial.println(integerFromPC);
-    Serial.print("Float ");
-    Serial.println(floatFromPC);
+    setDisplayNumber(lbsOfForce);
+}
+
+void handleIncomingData(){
+      listenOnSerialPort();
+    if (newData == true) {
+        strcpy(tempChars, receivedChars);
+            // this temporary copy is necessary to protect the original data
+            //   because strtok() used in parseData() replaces the commas with \0
+        parseData();
+        setVariables();
+        newData = false;
+    }
 }

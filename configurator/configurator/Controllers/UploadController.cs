@@ -14,13 +14,9 @@ namespace configurator.Controllers
 
         public void UpdateConfiguration(ConfigVariables cv)
         {
-            var dataToSend =
-                $"<{cv.iboRating},{cv.weightOnBowstring},{cv.lbsOfForce},{cv.drawLength},{cv.arrowWeight}>";
-
-            using (_serialPort)
-            {
-                _serialPort.WriteLine(dataToSend);
-            }
+            _serialPort.Open();
+            _serialPort.WriteLine(cv.PayLoad);
+            _serialPort.Close();
         }
     }
 }
