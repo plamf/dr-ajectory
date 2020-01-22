@@ -4,9 +4,10 @@
  * Note that you will have to change the corresponding variables/commands in the Dr. Ajectory Configurator if
  * you change them here and vice versa.
  * 
- * 1) COMMANDS:
- * We use single characters to communicate in order to minimize bandwidth usage and
+ * 1) COMMUNICATION-FLAGS:
+ * We use single characters/numbers to communicate in order to minimize bandwidth usage and
  * maximize transferspeed over the serial port.
+ * Example: Serial.print('O'); signals to the configurator than an operation was successful.
  * 
  * 2) CONFIG-VARIABLES:
  * These variables can be changed by using the Dr. Ajectory Configurator GUI.
@@ -14,12 +15,8 @@
  * 
  */
 
-//*************** COMMANDS *****************
-// I = sets iboRating
-// A = sets additionalWeightOnBowstringInGrams
-// L = sets lbsOfForce
-// C = sets cmDrawlength
-// W = sets arrowWeightGrains
+//********* COMMUNICATION-FLAGS ************
+// O = OK Result
 //******************************************
 
 //*********** CONFIG-VARIABLES *************
@@ -71,10 +68,9 @@ void listenOnSerialPort() {
 }
 
 void parseData() {      // split the data into its parts
-
     char * strtokIndx; // this is used by strtok() as an index
 
-    strtokIndx = strtok(NULL,",");
+    strtokIndx = strtok(tempChars,",");
     iboRating = atoi(strtokIndx); 
  
     strtokIndx = strtok(NULL, ",");
@@ -87,12 +83,9 @@ void parseData() {      // split the data into its parts
     cmDrawlength = atoi(strtokIndx); 
  
     strtokIndx = strtok(NULL, ",");
-    arrowWeightGrains = atoi(strtokIndx);     
-
-}
-
-void setVariables() {
-    setDisplayNumber(lbsOfForce);
+    arrowWeightGrains = atoi(strtokIndx); 
+    
+    Serial.print('O');
 }
 
 void handleIncomingData(){
@@ -102,7 +95,6 @@ void handleIncomingData(){
             // this temporary copy is necessary to protect the original data
             //   because strtok() used in parseData() replaces the commas with \0
         parseData();
-        setVariables();
         newData = false;
     }
 }

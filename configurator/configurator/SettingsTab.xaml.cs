@@ -123,7 +123,7 @@ namespace configurator
             var uploadController = new UploadController(serialPort);
             var config = new ConfigVariables
             {
-                ArrowWeight = tbWeightOnBowstring.Text,
+                ArrowWeight = tbArrowWeight.Text,
                 DrawLength = tbDrawLength.Text,
                 IboRating = tbIboRating.Text,
                 LbsOfForce = tbLbsOfForce.Text,
