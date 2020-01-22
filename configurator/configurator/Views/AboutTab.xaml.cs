@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace configurator
+namespace configurator.Views
 {
     public partial class AboutTab : UserControl
     {

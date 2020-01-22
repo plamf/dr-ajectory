@@ -10,7 +10,7 @@ using configurator.Controllers;
 using configurator.Helpers;
 using configurator.Models;
 
-namespace configurator
+namespace configurator.Views
 {
     public partial class SettingsTab : UserControl
     {
@@ -38,7 +38,7 @@ namespace configurator
             }
             catch (IOException e)
             {
-                MessageBox.Show($"A connection on {port} could not be established.", "Error", MessageBoxButton.OK,
+                MessageBox.Show($"A connection on {port} could not be established.\n\n{e.Message}", "Error", MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
 

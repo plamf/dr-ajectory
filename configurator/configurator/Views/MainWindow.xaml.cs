@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace configurator
+namespace configurator.Views
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
