@@ -20,11 +20,11 @@
 //******************************************
 
 //*********** CONFIG-VARIABLES *************
-int iboRating = 300;
+int iboRating = 0;
 int additionalWeightOnBowstringInGrams = 0;
-int lbsOfForce = 40;
-int cmDrawlength = 194;
-int arrowWeightGrains = 350;
+int lbsOfForce = 0;
+int cmDrawlength = 0;
+int arrowWeightGrains = 0;
 //******************************************
 
 const byte numChars = 32;
@@ -54,21 +54,20 @@ void listenOnSerialPort() {
                 }
             }
             else {
-                receivedChars[ndx] = '\0'; // terminate the string
+                receivedChars[ndx] = '\0';
                 recvInProgress = false;
                 ndx = 0;
                 newData = true;
             }
         }
-
         else if (rc == startMarker) {
             recvInProgress = true;
         }
     }
 }
 
-void parseData() {      // split the data into its parts
-    char * strtokIndx; // this is used by strtok() as an index
+void parseData() {
+    char * strtokIndx;
 
     strtokIndx = strtok(tempChars,",");
     iboRating = atoi(strtokIndx); 
@@ -89,11 +88,10 @@ void parseData() {      // split the data into its parts
 }
 
 void handleIncomingData(){
-      listenOnSerialPort();
+    listenOnSerialPort();
+    
     if (newData == true) {
         strcpy(tempChars, receivedChars);
-            // this temporary copy is necessary to protect the original data
-            //   because strtok() used in parseData() replaces the commas with \0
         parseData();
         newData = false;
     }

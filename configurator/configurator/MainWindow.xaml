@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:configurator"
         mc:Ignorable="d"
-        Title="Dr. Ajectory Configurator" Height="400" Width="500" MaxHeight="400" MaxWidth="500">
+        Title="Dr. Ajectory Configurator" Height="400" Width="500" MaxHeight="400" MaxWidth="500"
+        WindowStartupLocation="CenterScreen">
     <TabControl>
         <TabItem Header="Dr. Ajectory Settings">
             <local:SettingsTab></local:SettingsTab>
         </TabItem>
-        <TabItem Header="Manual Override" IsEnabled="False" />
-        <TabItem Header="Update from GitHub" IsEnabled="False" />
-        <TabItem Header="About" IsEnabled="False" />
+        <TabItem Header="About">
+            <local:AboutTab></local:AboutTab>
+        </TabItem>
 
     </TabControl>
 </Window>

@@ -84,10 +84,7 @@ namespace configurator
             portslist.Add(new KeyValuePair<string, SerialPort>("Select Device...", null));
             portslist.AddRange(PortParser.GetPorts());
 
-            cbDevice.DisplayMemberPath = "Key";
-            cbDevice.SelectedValuePath = "Value";
             cbDevice.ItemsSource = portslist;
-            cbDevice.SelectedIndex = 0;
             cbDevice.SelectionChanged += CbDevice_SelectionChanged;
         }
 
@@ -97,10 +94,7 @@ namespace configurator
             profileList.Add(new KeyValuePair<string, string>("Select Profile...", ""));
             profileList.AddRange(new List<KeyValuePair<string, string>>());
 
-            cbProfile.DisplayMemberPath = "Key";
-            cbProfile.SelectedValuePath = "Value";
             cbProfile.ItemsSource = profileList;
-            cbProfile.SelectedIndex = 0;
             cbProfile.SelectionChanged += CbProfile_SelectionChanged;
         }
 

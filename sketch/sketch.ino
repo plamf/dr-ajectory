@@ -9,6 +9,5 @@ void setup(){
 void loop(){
     turnOnDisplay();
     listenToInput();
-    
     handleIncomingData();
 }

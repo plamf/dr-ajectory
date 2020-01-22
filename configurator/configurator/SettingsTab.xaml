@@ -50,24 +50,30 @@
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbIboRating" PreviewTextInput="NumberValidationTextBox">300</TextBox>
 
         <Label Grid.Row="1" Grid.Column="0">Additional Weight on Bowstring</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tbWeightOnBowstring" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="tbWeightOnBowstring" PreviewTextInput="NumberValidationTextBox">0</TextBox>
         <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource UnitStyle}">gram</Label>
 
         <Label Grid.Row="2" Grid.Column="0">Pounds of Force</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbLbsOfForce" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbLbsOfForce" PreviewTextInput="NumberValidationTextBox">40</TextBox>
         <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource UnitStyle}">lbs</Label>
 
         <Label Grid.Row="3" Grid.Column="0">Draw-length</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tbDrawLength" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tbDrawLength" PreviewTextInput="NumberValidationTextBox">194</TextBox>
         <Label Grid.Row="3" Grid.Column="2" Style="{StaticResource UnitStyle}">cm</Label>
 
         <Label Grid.Row="4" Grid.Column="0">Arrow Weight</Label>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="tbArrowWeight" PreviewTextInput="NumberValidationTextBox"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="tbArrowWeight" PreviewTextInput="NumberValidationTextBox">350</TextBox>
         <Label Grid.Row="4" Grid.Column="2" Style="{StaticResource UnitStyle}">grain</Label>
 
-        <ComboBox x:Name="cbProfile" Grid.Row="5" Grid.ColumnSpan="3"></ComboBox>
+        <ComboBox x:Name="cbProfile" Grid.Row="5" Grid.ColumnSpan="3"
+                  DisplayMemberPath="Key"
+                  SelectedValuePath="Value"
+                  SelectedIndex="0"></ComboBox>
 
-        <ComboBox x:Name="cbDevice" Grid.Row="6" Grid.ColumnSpan="3"></ComboBox>
+        <ComboBox x:Name="cbDevice" Grid.Row="6" Grid.ColumnSpan="3"
+                  DisplayMemberPath="Key"
+                  SelectedValuePath="Value"
+                  SelectedIndex="0"></ComboBox>
 
         <Button x:Name="btnUploadSettings" Grid.Row="7" Grid.ColumnSpan="3" Height="40" IsEnabled="False" Click="BtnUploadSettings_OnClick">No connection...</Button>
     </Grid>
