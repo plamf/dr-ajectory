@@ -1,4 +1,4 @@
-![](https://github.com/plamf/dr-ajectory/workflows/Build%20Sketches/badge.svg)
+![](https://github.com/plamf/dr-ajectory/workflows/Build%20Sketches/badge.svg) ![](https://github.com/plamf/dr-ajectory/workflows/Build%20Configurator%20App/badge.svg)
 # Dr. Ajectory
 ## Laser-guided archery companion
 
