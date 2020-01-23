@@ -1,6 +1,3 @@
-const int iboRating = 300; //not sure if this should be constant or configurable
-int additionalWeightOnBowstringInGrams = 0;
-
 double convertForceIntoNewtons(int pounds){
   const double newtonsPerPound = 4.448;
   
