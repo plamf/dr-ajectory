@@ -12,8 +12,8 @@ jobs:
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Restore packages
-      run: nuget restore dr-ajectory\configurator\configurator.sln
+      run: nuget restore configurator\configurator.sln
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with MSBuild
-      run: msbuild dr-ajectory\configurator\configurator.sln -p:Configuration=Release
+      run: msbuild configurator\configurator.sln -p:Configuration=Release
