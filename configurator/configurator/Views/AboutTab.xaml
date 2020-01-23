@@ -33,10 +33,9 @@
 
         <Label Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HeaderStyle}">Dr. Ajectory Configurator</Label>
 
-        <Image Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Source="temp.png"></Image>
+        <Image Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Source="../temp.png"></Image>
 
-        <TextBlock Grid.Row="2" Grid.ColumnSpan="3">Companion App for the Arduino Project Dr. Ajectory.
-            <LineBreak></LineBreak>
-            Check it out on <Hyperlink NavigateUri="https://github.com/plamf/dr-ajectory" RequestNavigate="Hyperlink_OnRequestNavigate">GitHub</Hyperlink></TextBlock>
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="3">Companion App for
+            <Hyperlink NavigateUri="https://github.com/plamf/dr-ajectory" RequestNavigate="Hyperlink_OnRequestNavigate">Dr. Ajectory</Hyperlink></TextBlock>
     </Grid>
 </UserControl>

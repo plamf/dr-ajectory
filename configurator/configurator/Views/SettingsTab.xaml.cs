@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.IO.Ports;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,8 +15,6 @@ namespace configurator.Views
 {
     public partial class SettingsTab : UserControl
     {
-        private SerialPort _serialPort;
-
         public SettingsTab()
         {
             InitializeComponent();
@@ -26,23 +25,6 @@ namespace configurator.Views
         {
             var regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
-        }
-
-        private bool CheckConnection(string port)
-        {
-            _serialPort = new SerialPort(port, 115200) {Handshake = Handshake.None};
-            try
-            {
-                _serialPort.Open();
-                _serialPort.Close();
-            }
-            catch (IOException e)
-            {
-                MessageBox.Show($"A connection on {port} could not be established.\n\n{e.Message}", "Error", MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-
-            return true;
         }
 
         private void ToggleUploadButton(bool enabled)
@@ -105,9 +87,13 @@ namespace configurator.Views
 
         private void CbDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbDevice.SelectedValue is SerialPort port)
+            if (cbDevice.SelectedValue is SerialPort)
             {
-                ToggleUploadButton(enabled: CheckConnection(port.PortName));
+                ToggleUploadButton(enabled: true);
+            }
+            else
+            {
+                ToggleUploadButton(enabled: false);
             }
         }
 
@@ -125,6 +111,28 @@ namespace configurator.Views
             };
 
             uploadController.UpdateConfiguration(config);
+
+            DataReceivedNotification(uploadController);
+        }
+
+        private static void DataReceivedNotification(UploadController uploadController)
+        {
+            var waitTime = TimeSpan.FromMilliseconds(2000);
+
+            if (uploadController.DataReceivedEvent.WaitOne(waitTime) == false)
+            {
+                MessageBox.Show("Upload failed, please check your connection.", "Data upload", MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("Upload successful!", "Data upload", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Mouse.OverrideCursor = null;
+            });
         }
     }
 }
