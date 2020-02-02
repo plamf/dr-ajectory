@@ -28,34 +28,25 @@ double calculateVelocity(double F, double L, double m, double R, double W){
   return metersPerSecond;
 }
 
-int getDistance(){
-  //Todo: Determine distance to target in meters
-  int distance = 100;
-
-  setDisplayNumber(distance);
-  
-  return distance;
-}
-
 double convertRadiansToDegrees(double radians){
   const double pi = 3.1415;
   
   return radians * (180 / pi);
 }
 
-double calculateAngle(double velocity){
+double calculateAngle(double velocity, double distance){
   const double gravity = 9.81;
 
-  double angleInRadians = asin((gravity * getDistance()) / pow(velocity, 2));
+  double angleInRadians = asin((gravity * distance) / pow(velocity, 2));
   
   return convertRadiansToDegrees(angleInRadians);
 }
 
-double calculate(double lbsOfForce, double cmDrawlength, double arrowWeightGrains){
+double calculate(double lbsOfForce, double cmDrawlength, double arrowWeightGrains, double distance){
   double F = convertForceIntoNewtons(lbsOfForce);
   double L = convertDrawLengthIntoInches(cmDrawlength);
   double m = convertProjectileMassIntoKilograms(arrowWeightGrains);
   double v = calculateVelocity(F, L, m, iboRating, additionalWeightOnBowstringInGrams);
     
-  return calculateAngle(v);
+  return calculateAngle(v, distance);
 }

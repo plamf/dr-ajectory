@@ -29,24 +29,32 @@ int arrowWeightGrains = 0;
 
 const byte numChars = 32;
 char receivedChars[numChars];
-char tempChars[numChars];
-char messageFromPC[numChars] = {0};
-int integerFromPC = 0;
-float floatFromPC = 0.0;
+char tempConfigChars[numChars];
+char tempDistanceChars[numChars];
+boolean isConfigData;
+boolean isDistanceData;
 boolean newData = false;
+
+int distanceAsInt;
+double distanceAsDouble;
 
 void listenOnSerialPort() {
     static boolean recvInProgress = false;
     static byte ndx = 0;
-    char startMarker = '<';
-    char endMarker = '>';
     char rc;
+    
+    char configStartMarker = '<';
+    char configEndMarker = '>';
+    
+    char distanceStartMarker = ':';
+    char distanceEndMarker = 'm';
+    
 
     while (Serial.available() > 0 && newData == false) {
         rc = Serial.read();
 
         if (recvInProgress == true) {
-            if (rc != endMarker) {
+            if (rc != configEndMarker && rc != distanceEndMarker) {
                 receivedChars[ndx] = rc;
                 ndx++;
                 if (ndx >= numChars) {
@@ -60,16 +68,23 @@ void listenOnSerialPort() {
                 newData = true;
             }
         }
-        else if (rc == startMarker) {
-            recvInProgress = true;
+        else{
+          if (rc == configStartMarker) {
+              recvInProgress = true;
+              isConfigData = true;
+          }
+          if (rc == distanceStartMarker) {
+              recvInProgress = true;
+              isDistanceData = true;
+          }
         }
     }
 }
 
-void parseData() {
+void parseConfigData() {
     char * strtokIndx;
 
-    strtokIndx = strtok(tempChars,",");
+    strtokIndx = strtok(tempConfigChars,",");
     iboRating = atoi(strtokIndx); 
  
     strtokIndx = strtok(NULL, ",");
@@ -84,15 +99,44 @@ void parseData() {
     strtokIndx = strtok(NULL, ",");
     arrowWeightGrains = atoi(strtokIndx); 
     
-    Serial.print('O');
+    Serial.print('O'); //todo: change to OK to avoid clash with rangefinder TX
+}
+
+double convertDistanceToDouble(char distanceChars[]){
+  return String(distanceChars).toDouble();
+}
+
+int convertDistanceToInt(char distanceChars[]){
+  return atoi(distanceChars);
+}
+
+void parseDistanceData() {
+    char * strtokIndx;
+
+    strtokIndx = strtok(tempDistanceChars,",");
+    int test = atoi(strtokIndx);
+    
+    distanceAsDouble = convertDistanceToDouble(tempDistanceChars);
+    distanceAsInt = convertDistanceToInt(tempDistanceChars);
+
+    adjustAim(distanceAsInt, distanceAsDouble);
 }
 
 void handleIncomingData(){
     listenOnSerialPort();
     
     if (newData == true) {
-        strcpy(tempChars, receivedChars);
-        parseData();
-        newData = false;
+      if(isConfigData){
+        strcpy(tempConfigChars, receivedChars);
+        parseConfigData();
+      }
+      if(isDistanceData){
+        strcpy(tempDistanceChars, receivedChars);
+        parseDistanceData();
+      }
+      
+      newData = false;
+      isConfigData = false;
+      isDistanceData = false;
     }
 }
