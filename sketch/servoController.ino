@@ -19,3 +19,10 @@ void rotateServo(int degree){
     servo.write(degree);
   }
 }
+
+void adjustAim(int displayDistance, double calculationDistance){
+    int degree = calculate(lbsOfForce, cmDrawlength, arrowWeightGrains, calculationDistance);
+    
+    setDisplayNumber(displayDistance);
+    rotateServo(degree);
+}

@@ -1,7 +1,7 @@
 #include <SevSeg.h>
 
 SevSeg sevseg;
-int displayNumber;
+int displayNumber = 0;
 
 void initializeSevSegDisplay() {
   byte numDigits = 3;
@@ -18,6 +18,10 @@ void initializeSevSegDisplay() {
 
 void setDisplayNumber(int number){
   displayNumber = number;
+}
+
+int getDisplayNumber(){
+  return displayNumber;
 }
 
 void turnOnDisplay(){

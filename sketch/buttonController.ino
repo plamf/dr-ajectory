@@ -38,11 +38,13 @@ void listenToInput(){
   trackInputAmount();
   
   if (singlePress){
-    int degree = calculate(lbsOfForce, cmDrawlength, arrowWeightGrains);
-    rotateServo(degree);
+    if(getDisplayNumber() == 0){
+      requestMeasurement();
+    }
   } else if (triplePress) {
     calibrateServo();
     setDisplayNumber(0);
     pressCount = 0;
   }
+  handleIncomingData();
 }
