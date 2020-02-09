@@ -1,4 +1,4 @@
-void setup(){
+void setup() {
   Serial.begin(19200); //115200
   initializeButton();
   initializeServo();
@@ -6,7 +6,7 @@ void setup(){
   initializeLaser();
 }
 
-void loop(){
-    turnOnDisplay();
-    listenToInput();
+void loop() {
+  turnOnDisplay();
+  listenToInput();
 }

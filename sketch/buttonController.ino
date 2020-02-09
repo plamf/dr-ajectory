@@ -4,22 +4,22 @@ extern int cmDrawlength;
 extern int arrowWeightGrains;
 //*******************************************
 
-int buttonPin = A15;
+int buttonPin = A0;
 int pressCount = 0;
-int buttonState = 0; 
+int buttonState = 0;
 int lastButtonState = 0;
 
-void initializeButton(){
-  pinMode(buttonPin, INPUT); 
+void initializeButton() {
+  pinMode(buttonPin, INPUT);
 }
 
-int readButtonState(){
+int readButtonState() {
   return digitalRead(buttonPin);
 }
 
-void trackInputAmount(){
+void trackInputAmount() {
   buttonState = readButtonState();
-  
+
   if (buttonState != lastButtonState) {
     if (buttonState == HIGH) {
       pressCount++;
@@ -27,18 +27,18 @@ void trackInputAmount(){
     // Delay a little bit to avoid bouncing
     delay(50);
   }
-  
+
   lastButtonState = buttonState;
 }
 
-void listenToInput(){
+void listenToInput() {
   int singlePress = readButtonState() == HIGH && pressCount == 1;
   int triplePress = pressCount >= 3;
-  
+
   trackInputAmount();
-  
-  if (singlePress){
-    if(getDisplayNumber() == 0){
+
+  if (singlePress) {
+    if (getDisplayNumber() == 0) {
       requestMeasurement();
     }
   } else if (triplePress) {
