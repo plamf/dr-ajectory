@@ -1,3 +1,5 @@
-void requestMeasurement(){
-    Serial.print('D');
+void requestMeasurement() {
+  char autoMaticMode = 'D';
+
+  Serial.print(autoMaticMode);
 }

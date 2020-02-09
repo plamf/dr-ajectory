@@ -16,15 +16,15 @@ void initializeSevSegDisplay() {
   sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments, updateWithDelays, leadingZeros, disableDecPoint);
 }
 
-void setDisplayNumber(int number){
+void setDisplayNumber(int number) {
   displayNumber = number;
 }
 
-int getDisplayNumber(){
+int getDisplayNumber() {
   return displayNumber;
 }
 
-void turnOnDisplay(){
+void turnOnDisplay() {
   sevseg.setNumber(displayNumber);
   sevseg.refreshDisplay();
 }
