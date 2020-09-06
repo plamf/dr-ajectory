@@ -1,5 +1,6 @@
 void setup() {
-  Serial.begin(19200); //115200
+  Serial.begin(9200);
+  initializeSoftwareSerial();
   initializeButton();
   initializeServo();
   initializeSevSegDisplay();
@@ -7,6 +8,6 @@ void setup() {
 }
 
 void loop() {
-  turnOnDisplay();
+  updateDisplay();
   listenToInput();
 }
