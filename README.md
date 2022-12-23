@@ -2,7 +2,10 @@
 # Dr. Ajectory
 ## Laser-guided archery companion
 
-Under construction
+### Status: Suspended indefinitely
+I 3D printed a case and fit everything inside it. Upon trying to mount it on my Bow, the case shattered.
+It was my first ever try at creating a schematic and 3D printing it, so that was to be expected.
+Currently I have no motivation to revisit this project because I have more important things to do and ideas to tend do.
 
 ### Parts used
 - Arduino Mega, Uno or Nano
